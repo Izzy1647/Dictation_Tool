@@ -47,7 +47,7 @@
 		
 		<!-- 底部导航栏 -->
 		<view class="cu-bar tabbar bg-white shadow foot">
-			<view class="action" @click="NavChange" data-cur="words">
+			<view class="action" @click="jump('index')" data-cur="words">
 				<view class='cuIcon-cu-image'>
 					<text class="lg text-gray" :class="PageCur=='words'?'cuIcon-lightfill':'cuIcon-light'"></text>
 					<!-- <image :src="'/static/tabbar/basics' + [PageCur=='basics'?'_cur':''] + '.png'"></image> -->
@@ -62,7 +62,7 @@
 				</view>
 				<view :class="PageCur=='component'?'text-gray':'text-gray'">答题</view>
 			</view>
-			<view class="action" @click="NavChange" data-cur="plugin">
+			<view class="action" @click="jump('my')" data-cur="plugin">
 				<view class='cuIcon-cu-image'>
 					<text class="lg text-gray" :class="PageCur=='plugin'?'cuIcon-peoplefill':'cuIcon-people'"></text>
 					<!-- <image :src="'/static/tabbar/plugin' + [PageCur == 'plugin'?'_cur':''] + '.png'"></image> -->
@@ -83,15 +83,15 @@
 				toggleDelay: false,
 				list: [{
 						name: 'fade',
-						color: 'red'
+						color: 'white'
 					},
 					{
 						name: 'scale-up',
-						color: 'orange'
+						color: 'white'
 					},
 					{
 						name: 'scale-down',
-						color: 'olive'
+						color: 'white'
 					},
 					{
 						name: 'slide-top',
@@ -126,9 +126,20 @@
 			
 			stopDictation(){
 				console.log("Stop dictation...")
-			}
+			},
+				
+			jump(pageName) {
+				uni.navigateTo({
+				    url: `../${pageName}/${pageName}`,
+				    success: res => {},
+				    fail: () => {},
+				    complete: () => {}
+			    })
+			},
+		},
 		
-			
+		onLoad(e){   // 接收页面间传递的参数
+			console.log("传递来的listId:",e.listId)
 		}
 	}
 </script>

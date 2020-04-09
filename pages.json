@@ -104,11 +104,11 @@
 			"style": {}
 		}
         ,{
-            "path" : "pages/userWordlist/userWordlist",
+            "path" : "pages/dictate/dictate",
             "style" : {}
         }
         ,{
-            "path" : "pages/dictate/dictate",
+            "path" : "pages/my/my",
             "style" : {}
         }
     ],
