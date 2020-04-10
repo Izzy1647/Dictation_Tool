@@ -140,6 +140,7 @@
 		
 		onLoad(e){   // 接收页面间传递的参数
 			console.log("传递来的listId:",e.listId)
+			console.log("传递来的单词个数：",e.wordNum)
 		}
 	}
 </script>

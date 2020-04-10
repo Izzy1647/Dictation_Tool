@@ -19,9 +19,18 @@
 				
 				<view class="cu-form-group margin-top">
 					<view class="title">内置单词本</view>
-					<picker @change="PickerChange" :value="index" :range="picker">
+					<picker @change="wordListChange" :value="index" :range="picker">
 						<view class="picker">
 							{{index>-1?picker[index]:'选择'}}
+						</view>
+					</picker>
+				</view>
+				
+				<view class="cu-form-group ">
+					<view class="title">本次听写个数</view>
+					<picker @change="wordAmountChange" :value="wordsindex" :range="wordAmount">
+						<view class="picker">
+							{{wordsindex>-1?wordAmount[wordsindex]:'选择'}}
 						</view>
 					</picker>
 				</view>
@@ -40,9 +49,6 @@
 					开始听写
 				</view>
 			</view>
-			
-			
-
 		</view>
 
 		
@@ -81,18 +87,22 @@
 				topList: ['内置模版','自定义'],
 				TabCur: 0,   // 顶部导航栏选中的那一项
 				PageCur: 'words',
-				index:-1,
+				index:-1,  // 选中哪一本词汇书
 				picker: ['大学英语四级', '大学英语六级', '考研英语'],
-				
+				wordAmount: ['10','20','30'],
+				wordsindex:-1,
+				wordsSum:0,    // 听写多少个单词   
+
 			}
 		},
 		methods: {
 			startDictation(){ 
 				console.log("start dictation......")
 				let listId = this.index
+				let wordNum = this.wordsSum
 				console.log("listID:",listId)
 				uni.navigateTo({
-                    url: '../dictate/dictate?listId='+listId   // 跳转到听写页面
+                    url: '../dictate/dictate?listId='+listId+'&&wordNum='+wordNum   // 跳转到听写页面
                     // success: res => {},
                     // fail: () => {},
                     // complete: () => {}
@@ -104,9 +114,14 @@
 				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
 				console.log("tabcur:",this.TabCur)
 			},
-			PickerChange(e) {  // 记录下拉选择栏
+			wordListChange(e) {  // 记录词汇表的index
 				this.index = e.detail.value
 				console.log("this.index:",this.index)
+			},
+			wordAmountChange(e) {  // 记录词汇量的wordsindex
+				this.wordsindex = e.detail.value
+				this.wordsSum = this.wordAmount[e.detail.value]
+				console.log("this.wordsSum:",this.wordsSum)
 			},
 			jump(pageName) {
 				uni.navigateTo({
