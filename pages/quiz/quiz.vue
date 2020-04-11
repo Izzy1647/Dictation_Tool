@@ -1,57 +1,20 @@
 <template>
 	<view>
-		<cu-custom bgColor="bg-white" :isBack="true"><block slot="backText"></block><block slot="content">我的</block></cu-custom>
+		<cu-custom bgColor="bg-white" :isBack="true"><block slot="backText"></block><block slot="content">答题模式</block></cu-custom>
 		
-		
-		<!-- 头像框 -->
-		<view class="cu-list menu-avatar">
-			<view class="cu-item">
-				<view class="cu-avatar round lg" :style=" 'background-image:url('+userInfo.wxProfile.avatarUrl+');'"></view>
-				<view class="content" style="width: calc(100% - 200upx)">
-						<text class="text-cut margin-top-sm">username</text>
+		<!-- 顶部导航栏 -->
+		<scroll-view scroll-x class="bg-white nav">
+			<view class="flex text-center">
+				<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in topList" :key="index" @tap="tabSelect" :data-id="index">
+					{{item}}
 				</view>
 			</view>
-		</view>
+		</scroll-view>
 		
 		
 		
-		<!-- 列表栏 -->
-		<view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
-		  <view class="cu-item arrow" @tap="jump('garage')">
-		   <navigator class="content" hover-class="none" open-type="redirect" url="">
-		    <text class="cuIcon-friendadd text-black"></text>
-		    <text class="text-grey">学习记录</text>
-		   </navigator>
-		  </view>
-
-
-		  <view class="cu-item arrow">
-		   <navigator class="content" hover-class="none" @tap="jump('order')">
-		    <text class="cuIcon-moneybag text-black"></text>
-		    <text class="text-grey">我的词库</text>
-		   </navigator>
-		  </view>
-
 		
-		  <view class="cu-item arrow">
-		   <navigator class="content" hover-class="none" @tap="jump('')">
-		    <text class="cuIcon-service text-black"></text>
-		    <text class="text-grey">联系客服</text>
-		   </navigator>
-		  </view>
 		
-		  <view class="cu-item arrow">
-		   <navigator class="content" hover-class="none" @tap="jump('')">
-		    <text class="cuIcon-group text-black"></text>
-		    <text class="text-grey">关于我们</text>
-		   </navigator>
-		  </view>
-		  
-		 </view>
-		 
-		 
-		 
-		 
 		<!-- 底部导航栏 -->
 		<view class="cu-bar tabbar bg-white shadow foot">
 			<view class="action" @click="jump('index')" data-cur="words">
@@ -78,6 +41,7 @@
 			</view>
 		</view>
 		
+		
 	</view>
 </template>
 
@@ -85,9 +49,13 @@
 	export default {
 		data() {
 			return {
-				PageCur:'my'	
+				PageCur:'quiz',
+				topList:['上传文件','手动添加'],
+				TabCur:0
+				
 			}
 		},
+		
 		methods: {
 			jump(pageName) {
 				uni.navigateTo({
@@ -98,9 +66,18 @@
 			    })
 			},
 			
+			tabSelect(e) {   // 记录顶部导航栏
+				console.log("tabSelect.e:",e)
+				this.TabCur = e.currentTarget.dataset.id;
+				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
+				console.log("tabcur:",this.TabCur)
+			},
+			
+			
 		},
+		
 		onShow(){
-			this.PageCur = 'my'
+			this.PageCur = 'quiz'
 		}
 	}
 </script>

@@ -43,8 +43,6 @@
 			</view>
 		</view>
 		
-		
-		
 		<!-- 底部导航栏 -->
 		<view class="cu-bar tabbar bg-white shadow foot">
 			<view class="action" @click="jump('index')" data-cur="words">
@@ -55,21 +53,23 @@
 				
 				<view :class="PageCur=='words'?'text-gray':'text-gray'">背单词</view>
 			</view>
-			<view class="action" @click="NavChange" data-cur="component">
+			<view class="action" @click="jump('quiz')" data-cur="component">
 				<view class='cuIcon-cu-image'>
-					<text class="lg text-gray" :class="'cuIcon-read'"></text>
+					<text class="lg text-gray" :class="PageCur=='quiz'?'cuIcon-creativefill':'cuIcon-creative'"></text>
 					<!-- <image :src="'/static/tabbar/favor' + [PageCur == 'component'?'_cur':''] + '.png'"></image> -->
 				</view>
 				<view :class="PageCur=='component'?'text-gray':'text-gray'">答题</view>
 			</view>
 			<view class="action" @click="jump('my')" data-cur="plugin">
 				<view class='cuIcon-cu-image'>
-					<text class="lg text-gray" :class="PageCur=='plugin'?'cuIcon-peoplefill':'cuIcon-people'"></text>
+					<text class="lg text-gray" :class="PageCur=='my'?'cuIcon-peoplefill':'cuIcon-people'"></text>
 					<!-- <image :src="'/static/tabbar/plugin' + [PageCur == 'plugin'?'_cur':''] + '.png'"></image> -->
 				</view>
 				<view :class="PageCur=='plugin'?'text-gray':'text-gray'">我的</view>
 			</view>
 		</view>
+		
+
 
 	</view>
 </template>
