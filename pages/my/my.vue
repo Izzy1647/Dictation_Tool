@@ -17,18 +17,25 @@
 		
 		<!-- 列表栏 -->
 		<view class="cu-list menu" :class="[menuBorder?'sm-border':'',menuCard?'card-menu margin-top':'']">
-		  <view class="cu-item arrow" @tap="jump('garage')">
+		  <view class="cu-item arrow" @tap="jump('record')">
 		   <navigator class="content" hover-class="none" open-type="redirect" url="">
-		    <text class="cuIcon-friendadd text-black"></text>
+		    <text class="cuIcon-sort text-black"></text>
 		    <text class="text-grey">学习记录</text>
 		   </navigator>
 		  </view>
 
 
 		  <view class="cu-item arrow">
-		   <navigator class="content" hover-class="none" @tap="jump('order')">
-		    <text class="cuIcon-moneybag text-black"></text>
+		   <navigator class="content" hover-class="none" @tap="jump('mylist')">
+		    <text class="cuIcon-copy text-black"></text>
 		    <text class="text-grey">我的词库</text>
+		   </navigator>
+		  </view>
+		  
+		  <view class="cu-item arrow">
+		   <navigator class="content" hover-class="none" @tap="jump('myquiz')">
+		    <text class="cuIcon-voice text-black"></text>
+		    <text class="text-grey">我的问答</text>
 		   </navigator>
 		  </view>
 
@@ -41,8 +48,8 @@
 		  </view>
 		
 		  <view class="cu-item arrow">
-		   <navigator class="content" hover-class="none" @tap="jump('')">
-		    <text class="cuIcon-group text-black"></text>
+		   <navigator class="content" hover-class="none" @tap="jump('about')">
+		    <text class="cuIcon-mail text-black"></text>
 		    <text class="text-grey">关于我们</text>
 		   </navigator>
 		  </view>

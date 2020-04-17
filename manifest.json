@@ -41,6 +41,22 @@
             "ios" : {},
             /* ios打包配置 */
             "sdkConfigs" : {}
+        },
+        "nativePlugins" : {
+            "Karma617-TTSSpeaker" : {
+                "__plugin_info__" : {
+                    "name" : "文字转语音",
+                    "description" : "原生tts系统，可将文字转成语音播放，搭配第三方语音引擎可实现播放中文。",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
         }
     },
     /* SDK配置 */

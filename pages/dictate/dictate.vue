@@ -141,6 +141,7 @@
 		onLoad(e){   // 接收页面间传递的参数
 			console.log("传递来的listId:",e.listId)
 			console.log("传递来的单词个数：",e.wordNum)
+			console.log("传递来的自定义单词列表：",e.wordList)   // string格式
 		}
 	}
 </script>

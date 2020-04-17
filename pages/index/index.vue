@@ -77,7 +77,7 @@
 					<view class='cu-btn bg-green lg block shadow radius margin-xl' @tap="saveList" data-target="viewModal">
 						保存该组
 					</view>
-					<view class='cu-btn bg-green lg block shadow radius margin-xl' @tap="startDictation" data-target="viewModal">
+					<view class='cu-btn bg-green lg block shadow radius margin-xl' @tap="startCustomDictation" data-target="viewModal">
 						开始听写
 					</view>
 				</view>
@@ -142,10 +142,6 @@
 			}
 		},
 		methods: {
-			saveList(){   // 保存该组单词列表
-				
-			},
-			
 			startDictation(){ 
 				console.log("start dictation......")
 				let listId = this.index
@@ -157,6 +153,14 @@
                     // fail: () => {},
                     // complete: () => {}
                 })
+			},
+			
+			startCustomDictation(){
+				console.log("dictation list:",this.wordList)
+				let customList = this.wordList
+				uni.navigateTo({
+					url:'../dictate/dictate?wordList='+customList
+				})
 			},
 			
 			tabSelect(e) {   // 记录顶部导航栏
@@ -186,15 +190,21 @@
 			    })
 			},
 			
-			// 添加新单词	
 			addWord(e){
 				let word = e.detail.value.input
 				console.log("added word:",word)
-				this.wordList.push(word)
+				if(word){  
+					this.wordList.push(word)
+				}	
 				this.input = ''   // 输入后清空输入框
 				console.log("Current wordlist:",this.wordList)
 				
 			},
+			
+			saveList(){   // 保存该组单词列表
+				console.log("wordlist to be saved:",this.wordList)
+			},
+			
 			
 			// ListTouch触摸开始
 			ListTouchStart(e) {
